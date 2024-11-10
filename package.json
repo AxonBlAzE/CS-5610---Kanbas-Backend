@@ -19,6 +19,7 @@
   "homepage": "https://github.com/AxonBlAzE/CS-5610---Kanbas-Backend#readme",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.1",
     "nodemon": "^3.1.7"
   }
