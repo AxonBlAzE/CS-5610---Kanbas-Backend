@@ -6,6 +6,7 @@ export function findModulesForCourse(courseId) {
 export function createModule(module) {
     const newModule = { ...module, _id: Date.now().toString() };
     Database.modules = [...Database.modules, newModule];
+    console.log(Database.modules);
     return newModule;
 }
 export function deleteModule(moduleId) {
@@ -15,6 +16,11 @@ export function deleteModule(moduleId) {
 export function updateModule(moduleId, moduleUpdates) {
     const { modules } = Database;
     const module = modules.find((module) => module._id === moduleId);
+    if (!module) {
+        throw new Error(`Module with ID ${moduleId} not found.`);
+    }
+    // console.log("Updated module", module);
     Object.assign(module, moduleUpdates);
     return module;
 }
+

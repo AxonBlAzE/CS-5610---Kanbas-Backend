@@ -23,6 +23,8 @@ export default function UserRoutes(app) {
       return;
     }
     const currentUser = dao.createUser(req.body);
+    // console.log("Request Body", req.body);
+    // console.log("Created User", currentUser);
     res.json(currentUser);
   };
 
@@ -32,6 +34,7 @@ export default function UserRoutes(app) {
     if (currentUser) {
       req.session["currentUser"] = currentUser;
       // console.log("Setting Session", req.session["currentUser"]);
+      // console.log("Current User", currentUser);
       res.json(currentUser);
     } else {
       res.status(401).json({ message: "Unable to login. Try again later." });
