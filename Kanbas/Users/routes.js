@@ -80,6 +80,12 @@ export default function UserRoutes(app) {
     res.json(newCourse);
   };
 
+  const findUserByUsername = (req, res) => {
+    const { username } = req.params;
+    const user = dao.findUserByUsername(username);
+    res.json(user);
+  }
+
   app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
   app.post("/api/users/current/courses", createCourse);
   app.post("/api/users", createUser);

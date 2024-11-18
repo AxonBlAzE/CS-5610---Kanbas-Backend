@@ -27,3 +27,26 @@ export function findUsersForEnrolledCourse(courseId) {
     const enrollmentData = enrollments.filter((enrollment) => enrollment.course === courseId);
     return enrollmentData;
 }
+
+// function to enroll another user using username. also check if the user is already enrolled in the course
+export function enrollUserInCourseByUsername(username, courseId) {
+    const { users, courses, enrollments } = Database;
+    const user = users.find((user) => user.username === username);
+    const course = courses.find((course) => course._id === courseId);
+
+    if (!user || !course) {
+        return false; // user or course not found
+    }
+
+    // checking if the user is already enrolled in the course
+    const isAlreadyEnrolled = enrollments.some(
+        (enrollment) => enrollment.user === user._id && enrollment.course === courseId
+    );
+
+    if (isAlreadyEnrolled) {
+        return false; // user is already enrolled
+    }
+
+    enrollUserInCourse(user._id, course._id);
+    return true;
+}

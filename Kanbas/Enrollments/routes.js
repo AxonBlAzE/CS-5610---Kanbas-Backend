@@ -38,4 +38,15 @@ export default function EnrollmentRoutes(app) {
         const enrollments = dao.findAllEnrollments();
         res.json(enrollments);
     });
+
+    // write to enroll another user using username
+    app.post("/api/enrollments/username", (req, res) => {
+        const { username, courseId } = req.body;
+        const isEnrolled = dao.enrollUserInCourseByUsername(username, courseId);
+        if (isEnrolled) {
+            res.sendStatus(201);
+        } else {
+            res.status(400).json({ error: "User is already enrolled in the course or user/course not found." });
+        }
+    });
 }
