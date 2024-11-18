@@ -25,4 +25,17 @@ export default function EnrollmentRoutes(app) {
         // console.log("User", user, "unenrolled from course", course);
         res.sendStatus(204);
     });
+
+    // write to find all enrollments for a course
+    app.get("/api/enrollments/course/:courseId", (req, res) => {
+        const { courseId } = req.params;
+        const enrollments = dao.findUsersForEnrolledCourse(courseId);
+        res.json(enrollments);
+    });
+
+    // write to find all enrollments
+    app.get("/api/enrollments", (req, res) => {
+        const enrollments = dao.findAllEnrollments();
+        res.json(enrollments);
+    });
 }

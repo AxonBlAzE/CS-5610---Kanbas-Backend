@@ -20,3 +20,10 @@ export function findCoursesForEnrolledUser(userId) {
 export function findAllEnrollments() {
     return Database.enrollments;
 }
+
+// function to find all enrollments for a course (helper function)
+export function findUsersForEnrolledCourse(courseId) {
+    const { enrollments } = Database;
+    const enrollmentData = enrollments.filter((enrollment) => enrollment.course === courseId);
+    return enrollmentData;
+}
