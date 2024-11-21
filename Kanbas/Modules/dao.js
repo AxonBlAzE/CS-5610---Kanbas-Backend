@@ -6,7 +6,7 @@ export function findModulesForCourse(courseId) {
 export function createModule(module) {
     const newModule = { ...module, _id: Date.now().toString() };
     Database.modules = [...Database.modules, newModule];
-    console.log(Database.modules);
+    // console.log(Database.modules);
     return newModule;
 }
 export function deleteModule(moduleId) {
