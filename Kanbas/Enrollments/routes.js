@@ -42,9 +42,10 @@ export default function EnrollmentRoutes(app) {
     });
 
     // write to enroll another user using username
-    app.post("/api/enrollments/username", (req, res) => {
+    app.post("/api/enrollments/username", async (req, res) => {
+        // console.log("Enrolling User", req.body);
         const { username, courseId } = req.body;
-        const isEnrolled = dao.enrollUserInCourseByUsername(username, courseId);
+        const isEnrolled = await dao.enrollUserInCourseByUsername(username, courseId);
         if (isEnrolled) {
             res.sendStatus(201);
         } else {

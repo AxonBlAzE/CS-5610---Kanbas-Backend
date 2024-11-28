@@ -112,9 +112,9 @@ export default function UserRoutes(app) {
     if (userId === "current") {
       userId = currentUser._id;
     }
-    console.log("Finding Courses for User", userId);
+    // console.log("Finding Courses for User", userId);
     const courses = await enrollmentsDao.findCoursesForUser(userId);
-    console.log("Courses", courses);
+    // console.log("Courses", courses);
     res.json(courses);
   };
 
@@ -151,7 +151,7 @@ export default function UserRoutes(app) {
       uid = currentUser._id;
     }
     const status = await enrollmentsDao.unenrollUserFromCourse(uid, cid);
-    res.sendStatus(status);
+    res.send(status);
   };
 
 
